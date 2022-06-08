@@ -7,36 +7,40 @@ RUN apt-get update \
 		&& apt-get install -y \ 
 				apache2 \
 				libapache2-mod-security2 \
+				libapache2-mod-fcgid \
 				libapache2-mod-xsendfile \
+				libfcgi-bin zip \
+        jpegoptim \
+        optipng \
+        gifsicle \
+        openssl \
+        zip \
+        unzip \
+        curl \
 		&& rm -rf /var/lib/apt/lists/* \
 		&& a2enmod \
 			cache_socache \
-			proxy_balancer \
 			rewrite \
 			socache_shmcb \
-			proxy_connect \
 			mime_magic \
 			slotmem_shm \
-			proxy_http \
+			remoteip \
 			headers \
 			expires \
 			vhost_alias \
-			proxy_wstunnel \
-			mpm_event \
-			proxy_fdpass \
 			xml2enc \
 			http2 \
 			security2 \
 			lbmethod_byrequests \
-			proxy_fcgi \
-			proxy \
 			include \
 			cache \
 			ssl \
-			proxy_html \
+			proxy_fcgi \
 			setenvif \
-		&& a2dismod mpm_prefork
+			mpm_prefork \
+		&& a2ensite default-ssl
 
 WORKDIR /var/www/html
-EXPOSE 80
+EXPOSE 80 
+EXPOSE 443
 CMD ["apachectl", "-D", "FOREGROUND"]
