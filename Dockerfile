@@ -18,6 +18,7 @@ RUN apt-get update \
         unzip \
         curl \
 		&& rm -rf /var/lib/apt/lists/* \
+		&& a2dismod mpm_event \
 		&& a2enmod \
 			cache_socache \
 			rewrite \
