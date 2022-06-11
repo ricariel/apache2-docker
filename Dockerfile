@@ -4,6 +4,7 @@ LABEL org.opencontainers.image.authors="fabrice.kirchner@casa-due-pur.de"
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \ 
+		&& apt upgrade -y \
 		&& apt-get install -y \ 
 				apache2 \
 				libapache2-mod-security2 \
